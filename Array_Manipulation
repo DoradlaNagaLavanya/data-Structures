@@ -1,0 +1,33 @@
+#include<stdio.h>
+int main(){
+     long long int l[1000000];
+     long long int  n,m,b,a,i,k,j;
+    long long int  large;
+    scanf("%lld%lld",&n,&m);
+    
+    for(i=0;i<n;i++)
+       l[i]=0;
+    for (i=0;i<m;i++)
+      {
+          
+    scanf("%lld%lld%lld",&a,&b,&k);
+   
+    if(a<b)
+    {
+    for(j=a;j<=b;j++)
+    
+    l[j]=l[j]+k;
+      }
+    else if(a>b){
+    for(j=b;j<=a;j++)
+    l[j]=l[j]+k;
+    }
+      }
+    
+    large=l[0];
+      for(i=0;i<n;i++)
+      if(l[i]>large)
+      large=l[i];
+      printf("%lld",large);
+      return 0;
+}
