@@ -1,0 +1,16 @@
+#include<stdio.h>
+int main()
+{
+    int a[1000],n,temp,i,j,a1[1000],t;
+    //printf("enter n");
+    scanf("%d",&n);
+    
+    for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+    for(i=1;i<=n;i++)
+    {  
+        a1[i-1]=a[n-i];
+    }
+    for(i=0;i<n;i++)
+    printf("%d ",a1[i]);
+}
