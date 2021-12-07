@@ -1,0 +1,14 @@
+n=int(input())
+
+l1=[]
+l2=[]
+for i in range(n):
+    l1.append(input())
+
+q=int(input())
+for i in range(q):
+    l2.append(input())
+
+for k in range(len(l2)):
+    print(l1.count(l2[k]))        
+
