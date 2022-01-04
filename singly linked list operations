@@ -1,0 +1,147 @@
+#include<stdio.h>
+#include<stdlib.h>
+ struct node
+{
+    int data;
+    struct node *next;
+};
+struct node*createnode()
+{
+    int data;
+    struct node*newn;
+    struct node*head,*l;
+    int n,i;
+    printf("enter data:");
+    scanf("%d",&data);
+    newn=(struct node*)malloc(sizeof(struct node));
+    newn->data=data;
+    newn->next=NULL;
+    return newn;
+}
+struct node*createlist()
+{  
+    int n,i;
+    struct node*head=NULL,*l,*newn;
+    printf("enter how many nodes");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        newn=createnode();
+        if(i==0)
+        {
+        head=newn;
+        }
+        else
+        {
+        l->next=newn;
+        }
+        l=newn;
+    }
+    return head;
+}
+struct node* display(struct node*head)
+{
+    struct node*t=head;
+    //printf("%d/t", t->data) ;
+    //t = t->next;
+    while(t!=NULL)
+    {
+        printf("%d\t",t->data);
+        t=t->next;
+    }
+}
+struct node*insert(struct node*head)
+{
+    int pos;
+    struct node*newn;
+    int n;
+    struct node*t=head;
+    printf("enter size of list");
+    scanf("%d",&n);
+    printf("enter pos");
+    scanf("%d",&pos);
+    //printf("enter the element which should insert");
+    //scanf("%d",&data);
+   
+    newn=createnode();
+    if(pos==1)
+    {
+        if(head==NULL)
+        {
+            head=newn;
+            newn->next=NULL;
+        }
+        newn->next=head;
+        head=newn;
+    }    
+    else if(pos==n)
+    {
+        while(t->next!=NULL)
+        {
+            t=t->next;
+        }
+        //newn->next=NULL;
+        t->next=newn;
+    }
+        if(pos>1 && pos<n)
+        {
+            int i;
+            for(i=1;i<pos-1;i++)
+            {
+                t=t->next;
+            }
+            newn->next=t->next;
+            t->next=newn;
+        }
+        return head;
+    }
+struct node*delete(struct node*head)
+{
+    struct node*t=head,*t1;
+    int pos,i;
+    int n;
+    struct node*newn;
+    printf("enter size of list");
+    scanf("%d",&n);
+    printf("enter pos");
+    scanf("%d",&pos);
+    if(pos==1)
+    {
+        if(head=NULL)
+        printf("cant delete");
+    //t=t->next;
+    head=t->next;
+    //free(t);
+    }
+    else if(pos==n)
+    {
+        while(t->next->next!=NULL)
+        {
+            t=t->next;
+        }
+        t->next=NULL;
+    }
+    if(pos>1 && pos<n)
+    {
+        for(i=1;i<pos-1;i++)
+        {
+            t=t->next;
+        }
+        t->next=t->next->next;
+       
+    }
+    return head;
+}
+void main()
+{
+    struct node*h1=NULL;
+    struct node*h2=NULL;
+    struct node*h3=NULL;
+    h1=createlist();
+    h2=insert(h1);
+    printf("the data structure after insertion is:\n");
+    display(h2);
+    h3=delete(h1);
+    printf("after deletion:\n");
+    display(h3);
+}
