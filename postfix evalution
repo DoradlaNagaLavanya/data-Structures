@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+int a[100],i,top=-1;
+void push(int ele)
+{
+    if(top==99)
+    printf("stack overflow");
+    else
+    {
+           top=top+1;
+        a[top]=ele;
+    }
+}
+int pop()
+{
+    int item;
+   
+    if(top!=-1)
+    {
+        item=a[top];
+        top=top-1;
+        return item;
+    }
+}
+int main()
+{
+    char s[100];
+    int i;
+    char c1,c2;
+    printf("enter expression");
+    scanf("%s",s);
+    for(i=0;s[i]!='\0';i++)
+    {
+        c1=s[i];
+        if(isdigit(c1))
+        {
+        c2=c1-'0';
+        push(c2);
+        }
+        else
+        {
+            int a,b,c;
+            a=pop();
+                b=pop();
+                switch(c1)
+                {
+                    case '+':
+                    {
+                    c=a+b;
+                    break;
+                    }
+                    case '-':
+                    {
+                    c=b-a;
+                    break;
+                    }
+                    case '/':
+                    {
+                    c=b/a;
+                    break;
+                    }
+                    case '*':
+                    {
+                    c=a*b;
+                    break;
+                    }
+               
+                }
+                push(c);
+            }
+        }
+        printf("the expression is %d",pop());
+    }
+
+                   
+                   
+             
+   
