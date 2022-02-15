@@ -1,0 +1,87 @@
+#include <stdio.h>
+int top1= -1,top2=-1;
+int a[100],b[100];
+int c=0,i;
+void push1(int c)
+{
+    if(top1!=99)
+    {
+       top1=top1+1;
+        a[top1]=c;
+    }
+}
+void push2(int c)
+{
+    if(top2!=99)
+    {
+       top2=top2+1;
+        b[top2]=c;
+    }
+}
+int pop1()
+{
+    int item;
+    if(top1!=-1)
+    {
+        item = a[top1];
+        top1=top1-1;
+        return item;
+    }
+}
+int pop2()
+{
+    int item;
+    
+        item = b[top2];
+        top2=top2-1;
+        return item;
+
+}
+void insert(int e)
+{
+    push1(e);
+    c++;
+}
+void delete()
+{
+   
+    if(top1!=-1 && top2==-1)
+    {
+    for(i=0;i<c;i++)
+    {
+        int x;
+        x=pop1();
+        push2(x);
+    }
+    int b1=pop2();
+    printf("the deleted element is %d",b1);
+    printf("\n");
+    c--;
+    for(i=0;i<c;i++)
+    {
+        int m;
+        m=pop2();
+        push1(m);
+    }
+    }
+}
+void display()
+{
+    for(i=0;i<=top1;i++)
+    {
+        printf("%d\t",a[i]);
+    }
+}
+int main()
+{
+insert(10);
+insert(20);
+insert(30);
+delete();
+insert(40);
+display();
+}
+
+
+   
+    
