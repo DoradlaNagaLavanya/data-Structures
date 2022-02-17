@@ -1,0 +1,87 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+int top1= -1,top2=-1;
+int a[100],b[100];
+int i,x;
+int d;
+int y;
+int c=-1;
+//int b=0;
+void push1(int  c1)
+{
+    if(top1!=99)
+    {
+       top1=top1+1;
+        a[top1]=c1;
+    }
+}
+void push2(int c1)
+{
+    if(top2!=99)
+    {
+       top2=top2+1;
+        b[top2]=c1;
+    }
+}
+int pop1()
+{
+    int item;
+    if(top1!=-1)
+    {
+        item = a[top1];
+        top1=top1-1;
+        return item;
+    }
+}
+void insert(int e)
+{
+    push1(e);
+    d=c++;
+   
+}
+
+
+void middle()
+{
+int d;
+//printf("%d",d);
+for(i=0;i<d;i++)
+{
+    if(i==(d)/2)
+    {
+        x=pop1();
+    }
+   
+    else
+    {
+        y=pop1();
+        push2(y);
+    }
+}
+}
+void display()
+{
+    for(i=top2;i>=0;i--)
+    printf("%d ",b[i]);
+}
+int main()
+{
+   
+insert(1);
+insert(2);
+insert(3);
+insert(4);
+insert(5);
+//insert(6);
+//insert(7);
+middle();
+display();
+}
+
+
+
