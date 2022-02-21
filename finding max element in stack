@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<string.h>
+int top1= -1;
+int a[100000];
+int c=0,x,d,d1;
+void push1(int  c1)
+{
+    if(top1!=99999)
+    {
+       top1=top1+1;
+        a[top1]=c1;
+    }
+}
+void pop1()
+{
+    int item;
+    if(top1!=-1)
+    {
+        top1--;
+    }
+       
+}
+void insert(int e)
+{
+    push1(e);
+    d=c++;
+}
+void delete()
+{
+    pop1();
+  d=c--;
+}
+void getmax()
+{
+    int e,i;
+    e=a[top1];
+    for(i=0;i<d;i++)
+    {
+        if(a[i]>e)
+        {
+            e=a[i];
+        }
+    }
+        printf("%d\n",e);
+   
+}
+int main()
+{
+    int n,i,ch,e;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1:
+        scanf("%d",&e);
+        insert(e);
+        //printf("\n");
+        break;
+        case 2:
+        delete();
+        //printf("\n");
+        break;
+        case 3:
+        getmax();
+        //printf("\n");
+        break;
+    }
+    
+    }
+}
+   
+
