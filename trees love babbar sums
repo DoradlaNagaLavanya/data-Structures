@@ -1,0 +1,139 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct BTnode
+{
+int keyVal;
+struct BTnode *leftNode;
+struct BTnode *rightNode;
+};
+struct BTnode *getNode(int value)
+{
+    struct BTnode*newNode;
+newNode = (struct BTnode *)malloc(sizeof(struct BTnode));
+newNode->keyVal = value;
+newNode->leftNode = NULL;
+newNode->rightNode = NULL;
+return newNode;
+}
+struct BTnode *insert(struct BTnode *rootNode, int value)
+{
+if(rootNode == NULL)
+return getNode(value);
+if(rootNode->keyVal < value)
+rootNode->rightNode = insert(rootNode->rightNode,value);
+else if(rootNode->keyVal > value)
+rootNode->leftNode = insert(rootNode->leftNode,value);
+return rootNode;
+}
+void insertorder(struct BTnode *rootNode)
+{
+if(rootNode == NULL)
+return;
+insertorder(rootNode->leftNode);
+printf("%d ",rootNode->keyVal);
+insertorder(rootNode->rightNode);
+}
+void postorder(struct BTnode*rootNode)
+{
+    if(rootNode!=NULL)
+    {
+        postorder(rootNode->leftNode);
+        postorder(rootNode->rightNode);
+        printf("%d\t",rootNode->keyVal);
+    }
+}
+
+     int getHeight(struct BTnode* rootNode) {
+    int c1=0;
+    int c2=0;
+    // Write your code here
+    if(rootNode==NULL)
+    {
+        return -1;
+    }
+    c1=getHeight(rootNode->leftNode);
+    c1++;
+    c2=getHeight(rootNode->rightNode);
+    c2++;
+   
+    if(c1>c2)
+    return c1;
+    else
+  return c2;  
+
+}
+void isBalanced(struct BTnode*rootNode)
+{
+    int c1,c2,x;
+    c1=getHeight(rootNode->leftNode);
+    c1++;
+    c2=getHeight(rootNode->rightNode);
+    c2++;
+ x=(c2-c1);
+ //printf("the x is %d",x);
+ if(x<1)
+    printf("yes");
+    else
+    printf("No");
+}
+int isidentical(struct BTnode*rootNode1,struct BTnode*rootNode2)
+{
+    //int flag=0;
+   
+     if(rootNode1==NULL && rootNode2!=NULL)
+    return 0;
+    if(rootNode1!=NULL && rootNode2==NULL)
+    return 0;
+     if(rootNode1==NULL && rootNode2==NULL)
+    return 1;
+    else
+    {
+        if(rootNode1->keyVal!=rootNode2->keyVal)
+       return 0;
+         else if(rootNode1->keyVal==rootNode2->keyVal)
+          {
+           if(isidentical(rootNode1->leftNode,rootNode2->leftNode))
+           {
+         if(isidentical(rootNode1->rightNode,rootNode2->rightNode))
+         
+             return 1;
+           }
+           else
+           return 0;
+          }
+   }  
+}
+int s1=0;
+int s2=0;
+
+int main()
+{
+    int c1,c,c2;
+    int keyVal;
+struct BTnode *rootNode1 = NULL;
+struct BTnode *rootNode2 = NULL;
+rootNode1 = insert(rootNode1,1);
+rootNode1 = insert(rootNode1,2);
+rootNode1 = insert(rootNode1,3);
+rootNode2 = insert(rootNode2,1);
+rootNode2 = insert(rootNode2,2);
+rootNode2 = insert(rootNode2,3);
+rootNode2 = insert(rootNode2,5);
+rootNode1 = insert(rootNode1,4);
+printf("insertorder\n");
+insertorder(rootNode1);
+printf("\n");
+printf("insertorder\n");
+insertorder(rootNode1);
+c1=getHeight(rootNode1);
+printf("height = %d",c1);
+printf("\n");
+isBalanced(rootNode1);
+printf("\n");
+c=isidentical(rootNode1,rootNode2);
+printf("printing whether identical or not:");
+printf("%d",c);
+printf("\n");
+
+}
+
